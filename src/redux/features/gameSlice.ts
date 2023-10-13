@@ -9,7 +9,7 @@ interface gameState {
 }
 
 const initialState: gameState = {
-  fieldSize: 10,
+  fieldSize: 0,
   isGameStarted: false,
   isGameEnded: false,
   hoveredSquares: [],

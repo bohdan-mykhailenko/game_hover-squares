@@ -4,11 +4,14 @@ import './App.css';
 import { Grid, Typography } from '@mui/material';
 import { PlayField } from './components/PlayField';
 import { HovededSquares } from './components/HoveredSquares';
+import ModeSelector from './components/ModeSelector/ModeSelector';
 
 function App() {
   return (
     <Grid>
       <Typography variant="h1">Game</Typography>
+
+      <ModeSelector />
 
       <Grid container>
         <PlayField />
