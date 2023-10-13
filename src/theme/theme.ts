@@ -37,7 +37,9 @@ export const theme = createTheme({
 
   palette: {
     secondary: {
-      main: '#333333',
+      main: '#333',
+      dark: '#686868',
+      light: '#fff',
     },
   },
 

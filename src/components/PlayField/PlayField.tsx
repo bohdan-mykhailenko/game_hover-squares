@@ -9,6 +9,13 @@ export const PlayField: React.FC = () => {
   const fieldSize = useTypedSelector(selectFieldSize);
   const squaresCount = fieldSize * fieldSize;
 
+  const squares = Array.from({ length: squaresCount }, (_, index) => {
+    const row = Math.floor(index / fieldSize);
+    const column = index % fieldSize;
+
+    return <Square key={index} id={index + 1} row={row} column={column} />;
+  });
+
   return (
     <List
       sx={{
@@ -16,24 +23,11 @@ export const PlayField: React.FC = () => {
         height: '500px',
         width: '500px',
         display: 'grid',
-        gridTemplateColumns: (theme) => `repeat(${fieldSize}, 1fr)`,
+        gridTemplateColumns: () => `repeat(${fieldSize}, 1fr)`,
         border: `1px solid ${theme.palette.secondary.main}`,
       }}
     >
-      {Array.from({ length: squaresCount }, (_, index) => {
-        const row = Math.floor(index / fieldSize);
-        const column = index % fieldSize;
-
-        return (
-          <Square
-            key={index}
-            square={index + 1}
-            row={row}
-            column={column}
-            fieldSize={fieldSize}
-          />
-        );
-      })}
+      {squares}
     </List>
   );
 };

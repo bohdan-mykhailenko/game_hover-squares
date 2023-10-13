@@ -20,3 +20,10 @@ export const selectIsGameEnded = createSelector(
   [isGameEndedSelector],
   (isGameEnded) => isGameEnded,
 );
+
+const hoveredSquaresSelector = (state: RootState) => state.game.hoveredSquares;
+
+export const selectHoveredSquares = createSelector(
+  [hoveredSquaresSelector],
+  (hoveredSquares) => hoveredSquares,
+);
