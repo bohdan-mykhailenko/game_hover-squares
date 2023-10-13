@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid, useTheme } from '@mui/material';
 import React from 'react';
 
 interface SquareProps {
@@ -8,23 +8,18 @@ interface SquareProps {
   fieldSize: number;
 }
 
-export const Square: React.FC<SquareProps> = ({
-  square,
-  row,
-  column,
-  fieldSize,
-}) => {
+export const Square: React.FC<SquareProps> = ({ row, column, fieldSize }) => {
+  const theme = useTheme();
+
   return (
-    <Grid
+    <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'lightgray',
-        width: `calc(100% / ${fieldSize})`,
-        height: `calc(100% / ${fieldSize})`,
-        fontSize: '10px',
+        backgroundColor: theme.palette.primary.main,
+        border: `1px solid ${theme.palette.secondary.main}`,
       }}
-    >{`(Row: ${row}, Column: ${column})`}</Grid>
+    />
   );
 };

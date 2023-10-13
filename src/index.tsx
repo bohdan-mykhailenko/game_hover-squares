@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { StoreProvider } from './redux/provider';
+import { ThemeProvider } from './providers/ThemeProvider';
+import { QueryProvider } from './providers/QueryProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -10,7 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <StoreProvider>
-      <App />
+      <QueryProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </QueryProvider>
     </StoreProvider>
   </React.StrictMode>,
 );

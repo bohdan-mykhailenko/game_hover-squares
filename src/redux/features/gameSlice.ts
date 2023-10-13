@@ -7,7 +7,7 @@ interface gameState {
 }
 
 const initialState: gameState = {
-  fieldSize: 5,
+  fieldSize: 10,
   isGameStarted: false,
   isGameEnded: false,
 };
