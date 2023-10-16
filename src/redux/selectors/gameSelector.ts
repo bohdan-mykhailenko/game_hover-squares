@@ -1,11 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-const fieldSizeSelector = (state: RootState) => state.game.fieldSize;
+const selectedModeSelector = (state: RootState) => state.game.selectedMode;
 
-export const selectFieldSize = createSelector(
-  [fieldSizeSelector],
-  (fieldSize) => fieldSize,
+export const selectMode = createSelector(
+  [selectedModeSelector],
+  (selectedMode) => selectedMode,
 );
 
 const isGameStartedSelector = (state: RootState) => state.game.isGameStarted;

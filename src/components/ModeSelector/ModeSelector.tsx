@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { getModes } from '../../api/fieldsize';
 import {
+  FormControl,
   Grid,
   InputLabel,
   MenuItem,
@@ -9,12 +10,14 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { Mode } from '../../types/Mode';
-import { useTypedDispatch } from '../../redux/hooks';
-import { setFieldSize } from '../../redux/features/gameSlice';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
+import { selectMode } from '../../redux/selectors/gameSelector';
+import { setSelectedMode } from '../../redux/features/gameSlice';
 
-const ModeSelector: React.FC = () => {
+export const ModeSelector: React.FC = () => {
   const dispatch = useTypedDispatch();
   const [hasFetchedMessages, setHasFetchedMessages] = useState(false);
+  const selectedMode = useTypedSelector(selectMode);
 
   const {
     data: modesFromServer,
@@ -23,39 +26,31 @@ const ModeSelector: React.FC = () => {
   } = useQuery('modes', getModes, {
     enabled: !hasFetchedMessages,
     onSuccess: (data) => {
-      const initialMode = data[0].name;
-      const initialFieldSize = data[0].field;
-
-      dispatch(setFieldSize(initialFieldSize));
-
-      setSelectedMode(initialMode);
       setModes(data);
       setHasFetchedMessages(true);
     },
   });
 
-  const [selectedMode, setSelectedMode] = useState<string>('');
   const [modes, setModes] = useState<Mode[]>([]);
 
   const handleModeChange = (event: SelectChangeEvent) => {
     const selectedValue = event.target.value;
-    const selectedFieldSize =
-      modes.find((mode) => mode.name === selectedMode)?.field || 0;
+    const selectedMode =
+      modes.find((mode) => mode.name === selectedValue) || null;
 
-    setSelectedMode(selectedValue);
-
-    dispatch(setFieldSize(selectedFieldSize));
+    dispatch(setSelectedMode(selectedMode));
   };
 
   return (
-    <Grid>
-      <InputLabel id="select">Game Mode</InputLabel>
+    <FormControl sx={{ width: '350px' }}>
+      <InputLabel id="select-label">Pick mode</InputLabel>
       <Select
-        labelId="select"
-        id="demo-simple-select-standard"
-        value={selectedMode}
+        labelId="select-label"
+        id="select"
+        value={selectedMode?.name || ''}
+        label="Pick mode"
+        sx={{ height: '50px' }}
         onChange={handleModeChange}
-        label="Age"
       >
         {modesFromServer?.map((mode) => (
           <MenuItem key={mode.id} value={mode.name}>
@@ -63,8 +58,6 @@ const ModeSelector: React.FC = () => {
           </MenuItem>
         ))}
       </Select>
-    </Grid>
+    </FormControl>
   );
 };
-
-export default ModeSelector;

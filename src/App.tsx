@@ -4,7 +4,7 @@ import './App.css';
 import { Grid, Typography } from '@mui/material';
 import { PlayField } from './components/PlayField';
 import { HovededSquares } from './components/HoveredSquares';
-import ModeSelector from './components/ModeSelector/ModeSelector';
+import { ModeSelector } from './components/ModeSelector';
 
 function App() {
   return (

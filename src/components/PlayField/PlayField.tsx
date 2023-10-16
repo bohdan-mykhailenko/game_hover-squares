@@ -2,11 +2,11 @@ import { List, useTheme } from '@mui/material';
 import React from 'react';
 import { Square } from '../Square';
 import { useTypedSelector } from '../../redux/hooks';
-import { selectFieldSize } from '../../redux/selectors/gameSelector';
+import { selectMode } from '../../redux/selectors/gameSelector';
 
 export const PlayField: React.FC = () => {
   const theme = useTheme();
-  const fieldSize = useTypedSelector(selectFieldSize);
+  const fieldSize = useTypedSelector(selectMode)?.field || 5;
   const squaresCount = fieldSize * fieldSize;
 
   const squares = Array.from({ length: squaresCount }, (_, index) => {
