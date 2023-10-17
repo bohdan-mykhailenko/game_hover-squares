@@ -1,23 +1,71 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Grid, Typography } from '@mui/material';
+import { Grid, useTheme } from '@mui/material';
 import { PlayField } from './components/PlayField';
-import { HovededSquares } from './components/HoveredSquares';
 import { ModeSelector } from './components/ModeSelector';
+import { HoveredSquaresList } from './components/HoveredSquaresList';
+import { GameControllerButton } from './components/GameControllerButton';
+import { Alerts } from './components/Alerts';
+import { useTypedSelector } from './redux/hooks';
+import { selectIsAlertOpenned } from './redux/selectors/alertSelector';
 
 function App() {
+  const theme = useTheme();
+  const isAlertOpenned = useTypedSelector(selectIsAlertOpenned);
+
   return (
-    <Grid>
-      <Typography variant="h1">Game</Typography>
+    <Grid
+      sx={{
+        padding: '30px',
+        gap: '50px',
 
-      <ModeSelector />
+        [theme.breakpoints.down('sm')]: {
+          padding: '10px',
+          gap: '30px',
+        },
 
-      <Grid container>
+        [theme.breakpoints.down('xs')]: {
+          padding: '20px 0 0 0',
+          gap: '15px',
+        },
+      }}
+      container
+    >
+      <Grid
+        sx={{
+          [theme.breakpoints.down('md')]: {
+            margin: '0 auto',
+          },
+        }}
+      >
+        <Grid
+          sx={{
+            marginBottom: '50px',
+
+            [theme.breakpoints.down('sm')]: {
+              marginBottom: '30px',
+              textAlign: 'center',
+            },
+          }}
+        >
+          <ModeSelector />
+
+          <GameControllerButton />
+        </Grid>
+
         <PlayField />
-
-        <HovededSquares />
       </Grid>
+
+      <Grid
+        sx={{
+          [theme.breakpoints.down('md')]: {
+            margin: '0 auto',
+          },
+        }}
+      >
+        <HoveredSquaresList />
+      </Grid>
+
+      {isAlertOpenned && <Alerts />}
     </Grid>
   );
 }

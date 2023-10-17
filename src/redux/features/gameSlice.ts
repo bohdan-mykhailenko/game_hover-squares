@@ -12,11 +12,11 @@ interface gameState {
 const initialState: gameState = {
   selectedMode: null,
   isGameStarted: false,
-  isGameEnded: false,
+  isGameEnded: true,
   hoveredSquares: [],
 };
 
-const messagesSlice = createSlice({
+const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
@@ -30,6 +30,10 @@ const messagesSlice = createSlice({
 
     setIsGameEnded: (state, action: PayloadAction<boolean>) => {
       state.isGameEnded = action.payload;
+    },
+
+    resetHoveredSquares: (state) => {
+      state.hoveredSquares = [];
     },
 
     hoverSquare: (state, action: PayloadAction<Square>) => {
@@ -48,8 +52,9 @@ export const {
   setSelectedMode,
   setIsGameStarted,
   setIsGameEnded,
+  resetHoveredSquares,
   hoverSquare,
   unhoverSquare,
-} = messagesSlice.actions;
+} = gameSlice.actions;
 
-export default messagesSlice.reducer;
+export default gameSlice.reducer;
