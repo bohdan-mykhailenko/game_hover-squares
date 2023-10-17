@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+#  Hover Squares Game App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+* [**Demo Link**](https://bohdan-mykhailenko.github.io/hover_squares/)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This project is a simple game to hover different amounts of squares.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Alerts**: User-friendly alerts to show the info about gane or errors with fetching data.
+- **Adaptability**: Full adaptability for different screen resolutions.
+- **Choosing game mode**: Users have options to choose the field size.
+- **Hovering squares**: Allow users to hover selected items and unhover selected ones.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies
 
-### `npm test`
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Query](https://tanstack.com/query/v3/docs/react/overview)
+- [Axios](https://axios-http.com/docs/intro)
+- [MUI](https://mui.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Preview
 
-### `npm run build`
+**Starting screen**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://github.com/bohdan-mykhailenko/hover_squares/assets/76702178/724da6fe-48ed-48af-b428-442353d91718)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Active game session(easy mode)**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://github.com/bohdan-mykhailenko/hover_squares/assets/76702178/e2c80605-6e4a-48eb-8be3-0d34e4940c40)
 
-### `npm run eject`
+**Active game session(the hardest mode**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![image](https://github.com/bohdan-mykhailenko/hover_squares/assets/76702178/98f460e6-5d87-40ff-8e2a-5a275614d737)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Completed game**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![image](https://github.com/bohdan-mykhailenko/hover_squares/assets/76702178/344f32c7-47df-4aab-a0ad-403bea4ba27d)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**To get started with the app, follow these steps:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1.  Clone the repo:
+    
+```shell
+  https://github.com/<username>/hover_squares.git
+```
+    
+2.  Navigate to the project dir:
+   
+```shell 
+  cd hover_squares
+```
+
+3.  Install dependencies:
+    
+```shell
+  npm install
+```
+    
+ 4.  Start the server:
+```shell
+  npm start
+```
