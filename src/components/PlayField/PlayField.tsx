@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { List, useTheme } from '@mui/material';
-import { Square } from '../Square';
+import Square from '../Square/Square';
 import { useTypedSelector } from '../../redux/hooks';
 import { selectMode } from '../../redux/selectors/gameSelector';
 
@@ -9,12 +9,20 @@ export const PlayField: React.FC = () => {
   const fieldSize = useTypedSelector(selectMode)?.field || 5;
   const squaresCount = fieldSize * fieldSize;
 
-  const squares = Array.from({ length: squaresCount }, (_, index) => {
-    const row = Math.floor(index / fieldSize);
-    const column = index % fieldSize;
+  const squares = useMemo(() => {
+    const generatedSquares = [];
 
-    return <Square key={index} id={index + 1} row={row} column={column} />;
-  });
+    for (let index = 0; index < squaresCount; index++) {
+      const row = Math.floor(index / fieldSize);
+      const column = index % fieldSize;
+
+      generatedSquares.push(
+        <Square key={index} id={index + 1} row={row} column={column} />,
+      );
+    }
+
+    return generatedSquares;
+  }, [fieldSize]);
 
   return (
     <List

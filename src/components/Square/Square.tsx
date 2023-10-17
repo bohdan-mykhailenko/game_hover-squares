@@ -14,7 +14,7 @@ interface SquareProps {
   column: number;
 }
 
-export const Square: React.FC<SquareProps> = ({ id, row, column }) => {
+const Square: React.FC<SquareProps> = ({ id, row, column }) => {
   const theme = useTheme();
   const dispatch = useTypedDispatch();
   const hoveredSquares = useTypedSelector(selectHoveredSquares);
@@ -57,3 +57,5 @@ export const Square: React.FC<SquareProps> = ({ id, row, column }) => {
     />
   );
 };
+
+export default React.memo(Square);
