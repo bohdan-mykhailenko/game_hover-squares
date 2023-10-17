@@ -1,12 +1,12 @@
-import { List, useTheme } from '@mui/material';
 import React from 'react';
+import { List, useTheme } from '@mui/material';
 import { Square } from '../Square';
 import { useTypedSelector } from '../../redux/hooks';
-import { selectFieldSize } from '../../redux/selectors/gameSelector';
+import { selectMode } from '../../redux/selectors/gameSelector';
 
 export const PlayField: React.FC = () => {
   const theme = useTheme();
-  const fieldSize = useTypedSelector(selectFieldSize);
+  const fieldSize = useTypedSelector(selectMode)?.field || 5;
   const squaresCount = fieldSize * fieldSize;
 
   const squares = Array.from({ length: squaresCount }, (_, index) => {
@@ -20,11 +20,23 @@ export const PlayField: React.FC = () => {
     <List
       sx={{
         padding: '0',
+
         height: '500px',
         width: '500px',
         display: 'grid',
         gridTemplateColumns: () => `repeat(${fieldSize}, 1fr)`,
         border: `1px solid ${theme.palette.secondary.main}`,
+
+        [theme.breakpoints.down('sm')]: {
+          margin: '0 auto',
+          height: '400px',
+          width: '400px',
+        },
+
+        [theme.breakpoints.down('xs')]: {
+          height: '300px',
+          width: '300px',
+        },
       }}
     >
       {squares}

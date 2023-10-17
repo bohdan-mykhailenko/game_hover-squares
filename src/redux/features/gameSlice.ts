@@ -1,26 +1,27 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Square } from '../../types/Square';
+import { Mode } from '../../types/Mode';
 
 interface gameState {
-  fieldSize: number;
+  selectedMode: Mode | null;
   isGameStarted: boolean;
   isGameEnded: boolean;
   hoveredSquares: Square[];
 }
 
 const initialState: gameState = {
-  fieldSize: 10,
+  selectedMode: null,
   isGameStarted: false,
-  isGameEnded: false,
+  isGameEnded: true,
   hoveredSquares: [],
 };
 
-const messagesSlice = createSlice({
+const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    setFieldSize: (state, action: PayloadAction<number>) => {
-      state.fieldSize = action.payload;
+    setSelectedMode: (state, action: PayloadAction<Mode | null>) => {
+      state.selectedMode = action.payload;
     },
 
     setIsGameStarted: (state, action: PayloadAction<boolean>) => {
@@ -29,6 +30,10 @@ const messagesSlice = createSlice({
 
     setIsGameEnded: (state, action: PayloadAction<boolean>) => {
       state.isGameEnded = action.payload;
+    },
+
+    resetHoveredSquares: (state) => {
+      state.hoveredSquares = [];
     },
 
     hoverSquare: (state, action: PayloadAction<Square>) => {
@@ -44,11 +49,12 @@ const messagesSlice = createSlice({
 });
 
 export const {
-  setFieldSize,
+  setSelectedMode,
   setIsGameStarted,
   setIsGameEnded,
+  resetHoveredSquares,
   hoverSquare,
   unhoverSquare,
-} = messagesSlice.actions;
+} = gameSlice.actions;
 
-export default messagesSlice.reducer;
+export default gameSlice.reducer;
