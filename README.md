@@ -14,6 +14,11 @@ This project is a simple game to hover different amounts of squares.
 - **Choosing game mode**: Users have options to choose the field size.
 - **Hovering squares**: Allow users to hover selected items and unhover selected ones.
 
+
+## Future improvements
+
+- **Optimization**: Due to a large number of elements in some modes, the app works very slowly.
+
 ## Technologies
 
 - [TypeScript](https://www.typescriptlang.org/)
