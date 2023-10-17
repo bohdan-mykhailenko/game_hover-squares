@@ -3,14 +3,12 @@ import { useQuery } from 'react-query';
 import { getModes } from '../../api/gameModes';
 import {
   FormControl,
-  Grid,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   useTheme,
 } from '@mui/material';
-import { Mode } from '../../types/Mode';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectMode } from '../../redux/selectors/gameSelector';
 import {
@@ -35,14 +33,14 @@ export const ModeSelector: React.FC = () => {
       setHasFetchedMessages(true);
     },
     onError: () => {
-      const alertMessage = {
+      const errorMessage = {
         title: 'Error',
         text: 'Error occured when fetching data from the server!',
         severity: 'error',
       };
 
       dispatch(setIsAlertOppened(true));
-      dispatch(setAlertMessage(alertMessage));
+      dispatch(setAlertMessage(errorMessage));
     },
   });
 
@@ -80,6 +78,7 @@ export const ModeSelector: React.FC = () => {
         label="Pick mode"
         sx={{
           height: '50px',
+          
           [theme.breakpoints.down('xs')]: {
             height: '35px',
           },

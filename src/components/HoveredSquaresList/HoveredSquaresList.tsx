@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTypedSelector } from '../../redux/hooks';
 import { selectHoveredSquares } from '../../redux/selectors/gameSelector';
-import { Grid, List, ListItem, Typography, useTheme } from '@mui/material';
+import { Grid, List, Typography, useTheme } from '@mui/material';
 import { HoveredSquareItem } from '../HoveredSquareItem';
 
 export const HoveredSquaresList: React.FC = () => {
@@ -27,6 +27,7 @@ export const HoveredSquaresList: React.FC = () => {
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           columnGap: '5px',
+
           [theme.breakpoints.down('lg')]: {
             gridTemplateColumns: '1fr',
           },

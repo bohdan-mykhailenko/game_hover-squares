@@ -1,5 +1,5 @@
-import { Box, ListItem, ListItemButton, useTheme } from '@mui/material';
 import React from 'react';
+import { ListItemButton, useTheme } from '@mui/material';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { hoverSquare, unhoverSquare } from '../../redux/features/gameSlice';
 import {
@@ -16,22 +16,21 @@ interface SquareProps {
 
 export const Square: React.FC<SquareProps> = ({ id, row, column }) => {
   const theme = useTheme();
+  const dispatch = useTypedDispatch();
   const hoveredSquares = useTypedSelector(selectHoveredSquares);
   const isModeSelected = useTypedSelector(selectMode) !== null;
   const isGameStarted = useTypedSelector(selectIsGameStarted);
-  const isSquareActive = isModeSelected && isGameStarted;
 
+  const isSquareActive = isModeSelected && isGameStarted;
   const isHovered = hoveredSquares.find((square) => square.id === id);
 
-  const square = {
-    id,
-    row,
-    column,
-  };
-
-  const dispatch = useTypedDispatch();
-
   const handleMouseEnter = () => {
+    const square = {
+      id,
+      row,
+      column,
+    };
+
     if (isHovered) {
       dispatch(unhoverSquare(square.id));
 

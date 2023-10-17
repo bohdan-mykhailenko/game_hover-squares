@@ -1,5 +1,5 @@
-import { Alert, AlertColor, AlertTitle, Grid, useTheme } from '@mui/material';
 import React from 'react';
+import { Alert, AlertColor, AlertTitle, Grid, useTheme } from '@mui/material';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectAlertMessage } from '../../redux/selectors/alertSelector';
 import { setIsAlertOppened } from '../../redux/features/alertSlice';
@@ -8,6 +8,7 @@ export const Alerts: React.FC = () => {
   const theme = useTheme();
   const dispatch = useTypedDispatch();
   const alertMessage = useTypedSelector(selectAlertMessage);
+
   const { title, text, severity } = alertMessage;
 
   const handleCloseAlert = () => {

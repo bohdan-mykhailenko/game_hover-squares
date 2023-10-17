@@ -1,5 +1,5 @@
-import { Button, useTheme } from '@mui/material';
 import React from 'react';
+import { Button, useTheme } from '@mui/material';
 import {
   selectHoveredSquares,
   selectIsGameStarted,
@@ -23,26 +23,39 @@ export const GameControllerButton: React.FC = () => {
   const isGameStarted = useTypedSelector(selectIsGameStarted);
   const hoveredSquares = useTypedSelector(selectHoveredSquares);
   const isAlertOpenned = useTypedSelector(selectIsAlertOpenned);
+
   const isModeSelected = selectedMode !== null;
 
   const handleButtonClick = () => {
-    if (selectedMode) {
-      const isGameCompleted =
-        hoveredSquares.length === selectedMode?.field ** 2;
+    if (!isModeSelected) {
+      const infoMessage = {
+        title: 'Game rules',
+        text: 'Pick game mode before starting the game!',
+        severity: 'info',
+      };
+
+      dispatch(setIsAlertOppened(true));
+      dispatch(setAlertMessage(infoMessage));
+
+      return;
+    }
+
+    if (isGameStarted) {
+      const fieldSize = (selectedMode?.field || 0) ** 2;
+
+      const isGameCompleted = hoveredSquares.length === fieldSize;
 
       if (isGameCompleted) {
-        const alertMessage = {
+        const winningMessage = {
           title: 'Victory',
           text: 'You are the winner! Good job!!!',
           severity: 'success',
         };
 
         dispatch(setIsAlertOppened(true));
-        dispatch(setAlertMessage(alertMessage));
+        dispatch(setAlertMessage(winningMessage));
       }
-    }
 
-    if (isGameStarted) {
       dispatch(setIsGameStarted(false));
 
       return;
@@ -52,18 +65,6 @@ export const GameControllerButton: React.FC = () => {
       dispatch(resetHoveredSquares());
     }
 
-    if (!isModeSelected) {
-      const alertMessage = {
-        title: 'Game rules',
-        text: 'Pick game mode before starting the game!',
-        severity: 'info',
-      };
-
-      dispatch(setIsAlertOppened(true));
-      dispatch(setAlertMessage(alertMessage));
-
-      return;
-    }
     if (isAlertOpenned) {
       dispatch(setIsAlertOppened(false));
     }
@@ -79,6 +80,7 @@ export const GameControllerButton: React.FC = () => {
         height: '50px',
         width: '150px',
         fontSize: '16px',
+
         [theme.breakpoints.down('sm')]: {
           width: '100px',
         },

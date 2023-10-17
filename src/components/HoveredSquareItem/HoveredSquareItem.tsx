@@ -1,4 +1,4 @@
-import { Typography, Box, ListItem, useTheme } from '@mui/material';
+import { Typography, ListItem, useTheme } from '@mui/material';
 import React from 'react';
 
 interface HoveredSquareItemProps {

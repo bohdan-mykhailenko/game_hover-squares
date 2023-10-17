@@ -1,5 +1,5 @@
-import { List, ListItem, useTheme } from '@mui/material';
 import React from 'react';
+import { List, useTheme } from '@mui/material';
 import { Square } from '../Square';
 import { useTypedSelector } from '../../redux/hooks';
 import { selectMode } from '../../redux/selectors/gameSelector';
